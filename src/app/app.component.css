@@ -1,0 +1,26 @@
+header {
+    background-color: #0c6d06;
+    min-height: 64px;
+}
+ 
+header ul {
+    margin: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    width: 250px;
+}
+
+section nav {
+    background-color: #EDEDED;
+    padding: 1rem;
+}
+
+footer {
+    background-color: #454545;
+    padding: 2rem;
+}

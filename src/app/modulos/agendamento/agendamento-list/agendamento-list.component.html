@@ -1,0 +1,121 @@
+<div class="col-12">
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/">Início</a></li>
+        <li class="breadcrumb-item active">Agendamento</li>
+      </ol>
+    </nav>
+    <div class="row mb-4">
+      <div class="col-md">
+        <button type="button" routerLink="/" class="btn btn-warning float-right">
+          <i class="fas fa-backward"></i>&nbsp;Voltar
+        </button>
+      </div>
+    </div>
+    <form class="needs-validation" novalidate [formGroup]="agendForm">
+      <div class="card" style="box-shadow: 5px 5px 10px #000;">
+        <div class="card-header">
+            Mostrar Agenda ao Contribuinte
+        </div>
+        <div class="card-body">
+          <div class="form-row col-md-12">
+            <label style="color: green; font-weight: bold; font-size: 12pt;">DADOS DO CONTRIBUINTE</label>
+          </div>
+          <div class="form-row col-md-12">
+            <div class="col-md-2">
+                <label style="color: blue; font-weight: bold; font-size: 12pt;">Identificador:&#160;</label><span>{{ id }}</span>
+            </div>    
+            <div class="col-md-4">
+                <label style="color: blue; font-weight: bold; font-size: 12pt;">Nome:&#160;</label><span>{{ nome }}</span>
+            </div>
+            <div class="col-md-3">
+                <label style="color: blue; font-weight: bold; font-size: 12pt;">CPF/CNPJ:&#160;</label><span>{{ formatarPessoas(cpfCnpj) }}</span>
+            </div>
+            <div class="col-md-3">
+                <label style="color: blue; font-weight: bold; font-size: 12pt;">Telefone:&#160;</label><span>{{ telefone }}</span> 
+            </div>
+          </div>
+          <div class="form-row col-md-12 border-bottom">
+            <div class="col-md-6">
+                <label style="color: blue; font-weight: bold; font-size: 12pt;">Email:&#160;</label><span>{{ email }}</span>
+            </div>
+          </div>
+          <div class="form-row col-md-12 mt-3">
+			<label style="color: green; font-weight: bold; font-size: 12pt;">ESCOLHA O DIA E A UNIDADE DE SUA PREFERÊNCIA</label><br/>
+				<div class="form-row col-md-12">
+            <div class="form-group col-md-3" >
+                <label for="calendario">Calendário:</label>
+                <select  class="form-control" id="calendario" formControlName="calendario">
+                  <option value="" selected>Escolha o dia</option>
+                  <option *ngFor="let calendario of calendarios" [value]="calendario.dia">{{formatarDate(calendario.dia)}}</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="unidade">Unidades:</label>
+                <select  class="form-control" id="unidade" formControlName="unidade">
+                  <option value="" selected>Escolha a unidade</option>
+                  <option *ngFor="let unidade of unidades" [value]="unidade.descricao">{{unidade.descricao}}</option>
+                </select>
+            </div>
+				</div>
+			</div>
+         <div class="col-md-12">
+                <button type="button" (click)="verAgenda()" class="btn btn-success mt-4" data-toggle="modal" data-target=".bd-example-modal-lg">
+                    <i class="fas fa-list-ol"></i>&#160;Buscar vagas Agendamento
+                </button>
+        </div>
+        </div>
+      </div>
+    </form>
+    <div>
+    </div>
+  </div>
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Lista de vagas de agendamento.</h5>
+            <a type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </a>
+        </div>
+        <div class="modal-body">
+          <div class="form-row col-md-12 mb-2" style="color: blue; font-weight: bold; margin-left: 5px;">Óla,&#160;<span style="color: red;">{{nome.substring(0, 8)}},</span>&#160; 
+            aqui estão as vagas conforme a data e unidade escolhida! </div>
+            <div class="col-12" *ngIf="agendamentos">
+                <table class="table table-hover" style="box-shadow: 5px 5px 10px #000; font-size: 8pt;">
+                  <thead>
+                    <tr class="bg-success text-light">
+                      <th>#</th>
+                      <th>Horario</th>
+                      <th>Senha</th>
+                      <th>Status</th>
+                      <th>Unidade</th>
+                      <th>Serviço</th>
+                      <th>Dia</th>
+                      <th>Ações</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let agendamento of agendamentos">
+                      <td><strong>{{ agendamento.id }}</strong></td>
+                      <td>{{ agendamento.horario }}</td>
+                      <td>{{ agendamento.senha }}</td>
+                      <td>{{ agendamento.statusAgendamento }}</td>
+                      <td>{{ agendamento.grade.unidade.descricao }}</td>
+                      <td>{{ agendamento.grade.servico.sigla }}</td>
+                      <td>{{ formatarDate(agendamento.grade.calendario.dia) }}</td>
+                      <td>
+                        <button type="button" class="btn btn-outline-info btn-sm" (click)="agendar(agendamento.id)" data-dismiss="modal" aria-label="Close">
+                            Agendar
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
