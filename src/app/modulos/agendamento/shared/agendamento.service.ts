@@ -35,9 +35,9 @@ export class AgendamentoService {
   }
 
   listCalendario(){
-    return this.http.get<Calendario[]>(`${this.API}/calendario`).pipe(
+      return this.http.get<Calendario[]>(`${this.API}/calendario/diasAtivos`).pipe(
         take(1)
-    )
+      );
   }
 
   listDetalhamentoServico(id){
