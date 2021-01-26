@@ -6,7 +6,7 @@
         </h1>
         </div>
     </div>
-    <div class="form-group col-md-4" style="margin-left: 360px;">                         
+    <div class="form-group col-md-4" style="margin-left: 360px;">
         <div *ngIf ="msgError"  class="alert alert-danger" role="alert">
                 Usuário ou senha não encontrado!
             <a type="button" class="close" data-dismiss="alert" aria-label="Fechar">
@@ -28,7 +28,7 @@
                     </div>
                     <input id="id" class="form-control" type="text" (blur)="fechar()" formControlName="cpfCnpj" placeholder="CPF/CNPJ"/>
                 </div>
-            </div>	
+            </div>
             <div class="form-group col-md-12">
             <div class="input-group mb-3">
                   <div class="input-group-prepend">
@@ -36,7 +36,7 @@
                   </div>
                   <input id="senha" class="form-control" type="password" (focus)="fechar()" formControlName="senha" placeholder="SENHA"/>
             </div>
-            </div>	
+            </div>
             <div class="form-group col-md-12" style="margin-top: 5px">
                 <button type="submit" class="btn btn-success col-md-12" (click)="logar()">
                     Entrar&#160;<i class="fas fa-sign-in-alt"></i>
@@ -49,35 +49,32 @@
               </div>
                 <div class="form-group col-md-12 d-flex justify-content-center" style="margin-top: 5px">
                     <a routerLink="/">Alterar a senha</a>
-                </div> 
+                </div>
                 <div class="form-group col-md-12 d-flex justify-content-center">
                     <a routerLink="/">Esqueci a senha</a>
                 </div>
             </div>
             </div>
-        </div>	
+        </div>
         </form>
     <div>
     </div>
-    <!--<pre>
-      {{ loginForm.value | json }}  
-      </pre>--> 
   </div>
   <div class="modal" id="myModal">
     <div class="modal-dialog">
-        <div class="modal-content">					
+        <div class="modal-content">
         <!-- Modal Header -->
         <div class="modal-header">
             <h6 class="modal-title">Por gentileza, confira seus dados antes de confirmar a gravação das informações!</h6>
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-        </div>					
+        </div>
         <!-- Modal body -->
         <div class="modal-body">
-        <div class="card">	
+        <div class="card">
             <div class="card-header">
-               
+
              </div>
-        </div> 
+        </div>
             <div class="d-flex justify-content-center" style="color: red; font-weight: bold;">Dica! anote sua senha para evitar contratempos!</div>
         </div>
         <div class="d-flex justify-content-center">
@@ -86,12 +83,12 @@
                 <span> Resgistro salvo com sucesso!! </span>
               </div>
             </div>
-        </div>					
+        </div>
         <!-- Modal footer -->
         <div class="modal-footer">
             <button type="submit" class="btn btn-primary">Confirmar</button>
             <button type="button" class="btn btn-danger"  data-dismiss="modal">Fechar</button>
-        </div>                            
+        </div>
         </div>
     </div>
 </div>
