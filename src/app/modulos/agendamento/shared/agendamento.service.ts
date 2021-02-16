@@ -48,7 +48,7 @@ export class AgendamentoService {
 
   agendaContribuinte(calendario, unidade){
       const httpParams = new HttpParams().set("calendario", calendario).set("unidade", unidade);
-      return this.http.get<Agendamento[]>(`${this.API}/agendamento/agendar?${httpParams.toString()}`).pipe( 
+      return this.http.get<Agendamento[]>(`${this.API}/agendamento/agendar?${httpParams.toString()}`).pipe(
         take(1)
       );
   }
@@ -57,7 +57,13 @@ export class AgendamentoService {
     return this.http.patch(`${this.API}/agendamento/enviar`, agendamento).pipe(
       take(1)
     );
-      
+  }
+
+  listAgenamento(cpfCnpj){
+    return this.http.get<Agendamento[]>(`${this.API}/agendamento/mobile/consulta/${cpfCnpj}`).pipe(
+      take(1),
+      tap(console.log)
+    );
   }
 
 }

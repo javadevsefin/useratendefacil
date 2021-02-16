@@ -1,3 +1,4 @@
+import { GlobalService } from './../../shared/global.service';
 import { CadastroUsuarioService } from './../../cadastro-usuario/shared/cadastro-usuario.service';
 import { AgendamentoService } from './../shared/agendamento.service';
 import { DetalhamentoServico } from './../shared/detalhamento-servico';
@@ -32,18 +33,16 @@ export class AgendamentoListFinalComponent implements OnInit {
   btn: boolean = true;
   detalhamentoServicos: DetalhamentoServico[];
 
-  constructor(private route: ActivatedRoute, 
+  constructor(private route: ActivatedRoute,
     private fb: FormBuilder,
     private agendamentoService: AgendamentoService,
     private router: Router,
-    private cadastroService: CadastroUsuarioService) { }
+    private cadastroService: CadastroUsuarioService,
+    public globalService: GlobalService) { }
 
   ngOnInit(): void {
-   
-    
 
     const routeParans = this.route.snapshot.params;
-    console.log(routeParans);
 
       if(routeParans.id_usuario != null){
         this.cadastroService.loadById(routeParans.id_usuario).subscribe((usuario: any)=>{
@@ -65,8 +64,7 @@ export class AgendamentoListFinalComponent implements OnInit {
             this.status =  agenda.statusAgendamento;
             this.combobox(agenda.grade.servico.descricao);
             this.agendForm.get('id').setValue(this.id_agendamento.toString());
-          }
-          );
+          });
         }
       }
 
@@ -84,77 +82,19 @@ export class AgendamentoListFinalComponent implements OnInit {
     );
   }
 
-  formatarDate(data: string){
-    let dataCompleta = "";
-		
-			 let dia = data.substring(8,10);
-			 let mes = data.substring(5,7);
-       let ano = data.substring(0,4);
-       
-       if(dia.length == 1){
-        dia = "0" + dia;
-     }
-
-     if(mes.length == 1){
-       mes = "0" + mes
-     }
-       dataCompleta = dia+"/"+mes+"/"+ano
-    
-		 return dataCompleta;
-  }
-
-  formatarPessoas(pfj: string){
-    let res: string;
-    if(pfj.length == 11 ){
-      res = this.formatarCpf(pfj);
-    } 
-
-    if(pfj.length == 14 ){
-      res = this.formatarCnpj(pfj);
-    } 
-    return res;
-  }
-
-  formatarCpf(cpf){
-    let str:string = cpf; 
-    let p1 = str.substring(0, 3);
-    let p2 = str.substring(3, 6);
-    let p3 = str.substring(6, 9);
-    let p4 = str.substring(9, 11);
-      cpf = p1 + "." + p2 + "." + p3 + "-" + p4;
-    return cpf
-   }
-
-   formatarCnpj(cnpj){
-     let str: string = cnpj;
-
-     let p1 = str.substring(0, 2);
-     let p2 = str.substring(2, 5);
-     let p3 = str.substring(5, 8);
-     let p4 = str.substring(8, 12);
-     let p5 = str.substring(12, 14);
-
-      cnpj = p1 + "." + p2 + "." + p3 + "/" + p4 + "-" + p5;
-
-      return cnpj;
-    }
-
-    enviar(){
+  enviar(){
       if(this.agendForm.valid){
         this.btn = !this.btn;
-        console.log(this.agendForm.value)
         this.agendamentoService.enviar(this.agendForm.value).subscribe(
           success => {
-            console.log("Passou!")
-          }
-        );
-      }
+            this.globalService.saveShow("Enviado com Sucesso!", "Pedido");
+        });
     }
+  }
 
     imprimir(id){
      this.router.navigate(['agendamento/senha', id]);
      /*let url: string = "http://localhost:4900/agendamento/senha"+"/"+id;
      window.open(url, "Teste", "resizable,scrollbars,status");*/
     }
-
 }

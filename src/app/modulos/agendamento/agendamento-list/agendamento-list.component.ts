@@ -1,7 +1,8 @@
+import { GlobalService } from './../../shared/global.service';
 import { Agendamento } from './../shared/agendamento';
 import { Calendario } from './../shared/calendario';
 import { Unidade } from './../shared/unidade';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CadastroUsuarioService } from '../../cadastro-usuario/shared/cadastro-usuario.service';
@@ -25,11 +26,12 @@ export class AgendamentoListComponent implements OnInit {
   calendarios: Calendario[];
   agendamentos: Agendamento[];
 
-  constructor(private route: ActivatedRoute, 
+  constructor(private route: ActivatedRoute,
               private cadastroService: CadastroUsuarioService,
               private fb: FormBuilder,
               private agendamentoService: AgendamentoService,
-              private router: Router) { }
+              private router: Router,
+              public globalService: GlobalService) { }
 
   ngOnInit(): void {
 
@@ -48,66 +50,10 @@ export class AgendamentoListComponent implements OnInit {
       }
 
       this.agendForm = this.fb.group({
-          calendario: ["", []],
+          calendario: ["", [Validators.required]],
           unidade: ["", []]
       });
-
   }
-
-  formatarDate(data: string){
-    let dataCompleta = "";
-		
-			 let dia = data.substring(8,10);
-			 let mes = data.substring(5,7);
-       let ano = data.substring(0,4);
-       
-       if(dia.length == 1){
-        dia = "0" + dia;
-     }
-
-     if(mes.length == 1){
-       mes = "0" + mes
-     }
-       dataCompleta = dia+"/"+mes+"/"+ano
-    
-		 return dataCompleta;
-  }
-
-  formatarPessoas(pfj: string){
-    let res: string;
-    if(pfj.length == 11 ){
-      res = this.formatarCpf(pfj);
-    } 
-
-    if(pfj.length == 14 ){
-      res = this.formatarCnpj(pfj);
-    } 
-    return res;
-  }
-
-  formatarCpf(cpf){
-    let str:string = cpf; 
-    let p1 = str.substring(0, 3);
-    let p2 = str.substring(3, 6);
-    let p3 = str.substring(6, 9);
-    let p4 = str.substring(9, 11);
-      cpf = p1 + "." + p2 + "." + p3 + "-" + p4;
-    return cpf
-   }
-
-   formatarCnpj(cnpj){
-     let str: string = cnpj;
-
-     let p1 = str.substring(0, 2);
-     let p2 = str.substring(2, 5);
-     let p3 = str.substring(5, 8);
-     let p4 = str.substring(8, 12);
-     let p5 = str.substring(12, 14);
-
-      cnpj = p1 + "." + p2 + "." + p3 + "/" + p4 + "-" + p5;
-
-      return cnpj;
-    }
 
     verAgenda(){
       let calendario = this.agendForm.get('calendario').value;
@@ -116,7 +62,6 @@ export class AgendamentoListComponent implements OnInit {
       this.agendamentoService.agendaContribuinte(calendario, unidade).subscribe(
         dados => this.agendamentos = dados
       );
-
     }
 
     agendar(id_agenda){
@@ -131,10 +76,19 @@ export class AgendamentoListComponent implements OnInit {
       this.agendamentoService.listUnidade().subscribe(
         dados=> this.unidades = dados
       );
+  }
 
-     /* this.servicoService.listServico().subscribe(
-        dados=> this.servicos = dados
-      );*/
+  formatarCpfCnpj(cpfCnpj){
+    this.globalService.formatarPessoas(cpfCnpj);
+    return cpfCnpj;
+  }
+
+  consultar(){
+      this.router.navigate(['agendamento/consultar', this.cpfCnpj]);
+  }
+
+  avaliar(){
+
   }
 
 }

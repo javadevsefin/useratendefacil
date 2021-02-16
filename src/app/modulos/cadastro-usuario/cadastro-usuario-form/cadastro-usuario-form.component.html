@@ -1,20 +1,14 @@
-<div class="col-12">
-    <nav>
+<div class="border-top">
+    <nav class="mt-2">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a routerLink="/">Início</a></li>
-        <li class="breadcrumb-item active">Cadastro do Contribuinte</li>
+        <li class="breadcrumb-item active">Cadastro do Usuário</li>
       </ol>
     </nav>
-    <div *ngIf ="mostrarMens" class="alert alert-success" role="alert">
-      <a type="button" class="close" data-dismiss="alert" aria-label="Fechar">
-        <span aria-hidden="true">&times;</span>
-      </a>
-      Operação realizada com sucesso!!!
-    </div>
     <div class="row mb-4">
       <div class="col-md">
         <h1 class="h3 border-left pl-2">
-          Cadastro do contribuiunte
+          Cadastro do Usuário
         </h1>
       </div>
       <div class="col-md">
@@ -26,7 +20,7 @@
     <form class="needs-validation" novalidate [formGroup]="cadUserForm">
       <div class="card" style="box-shadow: 5px 5px 10px #000;">
         <div class="card-header">
-          Formulário para cadastro do contribuiunte
+          Formulário para Cadastro de Usuário
         </div>
         <div class="card-body">
           <div class="form-row col-md-12">
@@ -101,30 +95,23 @@
         </div>
       </div>
     </form>
-    <div>
-      <button
-        type="submit"
-        (click)="confirmarDados()"
-        class="btn btn-success float-right mt-2"
-        [disabled]="!cadUserForm.valid"
-        data-toggle="modal" 
-        data-target="#myModal"
-      >
+    <div  class="mb-5">
+      <button type="submit" (click)="confirmarDados()" class="btn btn-success float-right mt-2" [disabled]="!cadUserForm.valid" data-toggle="modal" data-target="#myModal">
       <i class="fas fa-save"></i> &nbsp;Salvar
       </button>
-    </div>  
+    </div>
   </div>
   <div class="modal" id="myModal">
     <div class="modal-dialog">
-        <div class="modal-content">					
+        <div class="modal-content">
         <!-- Modal Header -->
         <div class="modal-header">
             <h6 class="modal-title">Por gentileza, confira seus dados antes de confirmar a gravação das informações!</h6>
             <a type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></a>
-        </div>					
+        </div>
         <!-- Modal body -->
         <div class="modal-body">
-        <div class="card">	
+        <div class="card">
             <div class="card-header">
                <strong class="d-flex justify-content-center"> Dados do Contribuinte </strong>
                 <div>
@@ -135,21 +122,14 @@
                     <div class="d-flex justify-content-center">Senha: <strong style="color: green;">{{ senha }}</strong></div>
                 </div>
              </div>
-        </div> 
+        </div>
             <div class="d-flex justify-content-center" style="color: red; font-weight: bold;">Dica! anote sua senha para evitar contratempos!</div>
         </div>
-        <div class="d-flex justify-content-center">
-            <div class="col-md-12">
-              <div *ngIf ="mostrarMens" style="text-align: center;"  class="col-12 alert alert-success" role="alert">
-                <span> Resgistro salvo com sucesso!! </span>
-              </div>
-            </div>
-        </div>					
         <!-- Modal footer -->
         <div class="modal-footer">
             <button type="submit" class="btn btn-primary"  (click)="onSubmit()" [disabled]="!cadUserForm.valid">Confirmar</button>
             <button type="button" class="btn btn-danger" (click)="limpar()" data-dismiss="modal">Fechar</button>
-        </div>                            
+        </div>
         </div>
     </div>
 </div>

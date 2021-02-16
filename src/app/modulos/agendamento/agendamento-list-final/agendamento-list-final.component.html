@@ -1,5 +1,5 @@
-<div class="col-12">
-    <nav>
+<div class="border-top">
+    <nav class="mt-2">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a routerLink="/">Início</a></li>
         <li class="breadcrumb-item"><a routerLink="/agendamento">Listagem</a></li>
@@ -16,11 +16,11 @@
     <form class="needs-validation" novalidate [formGroup]="agendForm">
       <div class="card" style="box-shadow: 5px 5px 10px #000;">
         <div class="card-header">
-            Mostrar Agenda ao Contribuinte
+            Continuando o Agendamento
         </div>
         <div class="card-body">
           <div class="form-row col-md-12">
-            <label style="color: green; font-weight: bold; font-size: 12pt;">DADOS DO CONTRIBUINTE</label>
+            <label style="color: green; font-weight: bold; font-size: 12pt;">DADOS PESSOAIS</label>
           </div>
           <div class="form-row col-md-12">
             <div class="col-md-2">
@@ -30,7 +30,7 @@
                 <label style="color: blue; font-weight: bold; font-size: 12pt;">Nome:&#160;</label><span>{{ nome }}</span>
             </div>
             <div class="col-md-3">
-                <label style="color: blue; font-weight: bold; font-size: 12pt;">CPF/CNPJ:&#160;</label><span>{{ formatarPessoas(cpfCnpj) }}</span>
+                <label style="color: blue; font-weight: bold; font-size: 12pt;">CPF/CNPJ:&#160;</label><span>{{ globalService.formatarPessoas(cpfCnpj) }}</span>
             </div>
             <div class="col-md-3">
                 <label style="color: blue; font-weight: bold; font-size: 12pt;">Telefone:&#160;</label><span>{{ telefone }}</span>
@@ -52,7 +52,7 @@
                 <label style="color: blue; font-weight: bold; font-size: 12pt;">Unidade:&#160;</label><span>{{ unidade }}</span>
             </div>
             <div class="col-md-3">
-                <label style="color: blue; font-weight: bold; font-size: 12pt;">Data:&#160;</label><span>{{ formatarDate(data) }}</span>
+                <label style="color: blue; font-weight: bold; font-size: 12pt;">Data:&#160;</label><span>{{ data | date: "dd/MM/yyyy" }}</span>
             </div>
             <div class="col-md-3">
                 <label style="color: blue; font-weight: bold; font-size: 12pt;">Horário:&#160;</label><span>{{ horario }}</span>
@@ -89,10 +89,10 @@
                     <option value="Obeso">Obeso</option>
                 </select>
             </div>
-            <div class="form-group col-md-6 mt-4" style="box-shadow: 5px 5px 10px #000;">
+            <div class="form-group col-md-6 mt-4 alert alert-danger" role="alert" style="box-shadow: 5px 5px 10px #000;">
                 <div class="ml-2">
                 <label for="prioridade" style="color: red;"><strong>Atendimento prioritário</strong></label><br/>
-                <span style="font-size: 12px; font-weight: bold;">Em conformidade com a Lei nº 10.048/00 é direito a atendimento prioritário,
+                <span style="font-size: 12px; font-weight: bold; color: black;">Em conformidade com a Lei nº 10.048/00 é direito a atendimento prioritário,
                         pessoas com necessidades especiais, idosos com idade igual ou superior a 60 (sessenta) anos, gestantes,
                         lactantes, pessoas com crianças de colo e obesos em repartições públicas, empresas concessionárias de
                         serviços públicos e instituições financeiras. </span>
@@ -131,7 +131,7 @@
         <div class="modal-content">
             <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">
-                <h6 class="modal-title"> &#10004; &#160;<strong style="color: blue;">Chegamos ao final!</strong></h6>
+                <h6 class="modal-title"> &#10004; &#160;<strong style="color: blue;">Chegamos ao Final!</strong></h6>
             </h5>
             <a type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -147,11 +147,6 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center" style="color: red; font-weight: bold;">Dica! Imprima seu recibo apos enviar !</div>
-                <div class="col-md-12 mt-2">
-                    <div *ngIf ="!btn" style="text-align: center;"  class="col-12 alert alert-success" role="alert">
-                      <span> Pedido enviado com sucesso!! </span>
-                    </div>
-                  </div>
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>

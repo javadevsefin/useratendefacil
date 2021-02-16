@@ -24,7 +24,6 @@ export class LoginFormComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-
     this.loginForm = this.fb.group({
       cpfCnpj: ['', []],
       senha: ['', []]
@@ -36,7 +35,7 @@ export class LoginFormComponent implements OnInit {
   }
 
   logar(){
-    
+
     let cpfCnpj = this.loginForm.get('cpfCnpj').value;
     let senha = this.loginForm.get('senha').value;
 
@@ -49,7 +48,6 @@ export class LoginFormComponent implements OnInit {
           this.authService.setLoggedIn(true);
           this.router.navigate(['agendamento/user', this.id]);
         }
-       
     }, (error: any) => { this.msgError = true }
     );
     this.loginForm.reset();

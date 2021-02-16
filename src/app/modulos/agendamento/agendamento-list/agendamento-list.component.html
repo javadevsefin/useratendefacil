@@ -1,5 +1,5 @@
-<div class="col-12">
-    <nav>
+<div class="border-top">
+    <nav class="mt-2">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a routerLink="/">Início</a></li>
         <li class="breadcrumb-item active">Agendamento</li>
@@ -7,6 +7,12 @@
     </nav>
     <div class="row mb-4">
       <div class="col-md">
+        <button type="button" (click)="consultar()" class="btn btn-info">
+          <i class="fas fa-search"></i>&nbsp;Consultar
+        </button>
+        <button type="button" routerLink="/" class="btn btn-success">
+          <i class="far fa-thumbs-up"></i>&nbsp;Avaliar
+        </button>
         <button type="button" routerLink="/" class="btn btn-warning float-right">
           <i class="fas fa-backward"></i>&nbsp;Voltar
         </button>
@@ -15,39 +21,39 @@
     <form class="needs-validation" novalidate [formGroup]="agendForm">
       <div class="card" style="box-shadow: 5px 5px 10px #000;">
         <div class="card-header">
-            Mostrar Agenda ao Contribuinte
+            Mostrar Agenda
         </div>
         <div class="card-body">
           <div class="form-row col-md-12">
-            <label style="color: green; font-weight: bold; font-size: 12pt;">DADOS DO CONTRIBUINTE</label>
+            <label style="color: green; font-weight: bold; font-size: 12pt;">DADOS PESSOAIS</label>
           </div>
           <div class="form-row col-md-12">
             <div class="col-md-2">
                 <label style="color: blue; font-weight: bold; font-size: 12pt;">Identificador:&#160;</label><span>{{ id }}</span>
-            </div>    
+            </div>
             <div class="col-md-4">
                 <label style="color: blue; font-weight: bold; font-size: 12pt;">Nome:&#160;</label><span>{{ nome }}</span>
             </div>
             <div class="col-md-3">
-                <label style="color: blue; font-weight: bold; font-size: 12pt;">CPF/CNPJ:&#160;</label><span>{{ formatarPessoas(cpfCnpj) }}</span>
+                <label style="color: blue; font-weight: bold; font-size: 12pt;">CPF/CNPJ:&#160;</label><span>{{ globalService.formatarPessoas(cpfCnpj) }}</span>
             </div>
             <div class="col-md-3">
-                <label style="color: blue; font-weight: bold; font-size: 12pt;">Telefone:&#160;</label><span>{{ telefone }}</span> 
+                <label style="color: blue; font-weight: bold; font-size: 12pt;">Telefone:&#160;</label><span>{{ telefone }}</span>
             </div>
           </div>
           <div class="form-row col-md-12 border-bottom">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <label style="color: blue; font-weight: bold; font-size: 12pt;">Email:&#160;</label><span>{{ email }}</span>
             </div>
           </div>
-          <div class="form-row col-md-12 mt-3">
+      <div class="form-row col-md-12 mt-3">
 			<label style="color: green; font-weight: bold; font-size: 12pt;">ESCOLHA O DIA E A UNIDADE DE SUA PREFERÊNCIA</label><br/>
 				<div class="form-row col-md-12">
             <div class="form-group col-md-3" >
                 <label for="calendario">Calendário:</label>
                 <select  class="form-control" id="calendario" formControlName="calendario">
                   <option value="" selected>Escolha o dia</option>
-                  <option *ngFor="let calendario of calendarios" [value]="calendario.dia">{{formatarDate(calendario.dia)}}</option>
+                  <option *ngFor="let calendario of calendarios" [value]="calendario.dia">{{globalService.formatarDate(calendario.dia)}}</option>
                 </select>
             </div>
             <div class="form-group col-md-4">
@@ -60,9 +66,9 @@
 				</div>
 			</div>
          <div class="col-md-12">
-                <button type="button" (click)="verAgenda()" class="btn btn-success mt-4" data-toggle="modal" data-target=".bd-example-modal-lg">
-                    <i class="fas fa-list-ol"></i>&#160;Buscar vagas Agendamento
-                </button>
+            <button type="button" (click)="verAgenda()" class="btn btn-success mt-4" [disabled]="!agendForm.valid" data-toggle="modal" data-target=".bd-example-modal-lg">
+                <i class="fas fa-list-ol"></i>&#160;Mostrar vagas
+            </button>
         </div>
         </div>
       </div>
@@ -74,20 +80,23 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">Lista de vagas de agendamento.</h5>
+            <h5 class="modal-title">Lista de Vagas de Agendamento.</h5>
             <a type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </a>
         </div>
         <div class="modal-body">
-          <div class="form-row col-md-12 mb-2" style="color: blue; font-weight: bold; margin-left: 5px;">Óla,&#160;<span style="color: red;">{{nome.substring(0, 8)}},</span>&#160; 
-            aqui estão as vagas conforme a data e unidade escolhida! </div>
-            <div class="col-12" *ngIf="agendamentos">
-                <table class="table table-hover" style="box-shadow: 5px 5px 10px #000; font-size: 8pt;">
+          <div class="alert alert-success" role="alert">
+            <div style="color: blue; font-weight: bold; margin-left: 5px;">Óla,&#160;<span style="color: red;">{{nome}},&#160;</span>
+              aqui estão as vagas conforme a data e unidade escolhida!
+            </div>
+          </div>
+            <div id="tbsd" class="table-responsive" *ngIf="agendamentos">
+                <table class="table table-hover">
                   <thead>
                     <tr class="bg-success text-light">
-                      <th>#</th>
-                      <th>Horario</th>
+                      <th>ID</th>
+                      <th>Horário</th>
                       <th>Senha</th>
                       <th>Status</th>
                       <th>Unidade</th>
@@ -104,7 +113,7 @@
                       <td>{{ agendamento.statusAgendamento }}</td>
                       <td>{{ agendamento.grade.unidade.descricao }}</td>
                       <td>{{ agendamento.grade.servico.sigla }}</td>
-                      <td>{{ formatarDate(agendamento.grade.calendario.dia) }}</td>
+                      <td>{{ globalService.formatarDate(agendamento.grade.calendario.dia) }}</td>
                       <td>
                         <button type="button" class="btn btn-outline-info btn-sm" (click)="agendar(agendamento.id)" data-dismiss="modal" aria-label="Close">
                             Agendar
