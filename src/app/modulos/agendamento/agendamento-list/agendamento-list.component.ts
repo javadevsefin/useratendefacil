@@ -88,7 +88,7 @@ export class AgendamentoListComponent implements OnInit {
   }
 
   avaliar(){
-
+    this.router.navigate(['avaliacao/consultar', this.cpfCnpj]);
   }
 
 }

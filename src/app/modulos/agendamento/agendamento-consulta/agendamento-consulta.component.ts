@@ -26,8 +26,8 @@ export class AgendamentoConsultaComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private agendamentoService: AgendamentoService,
-              public globalService: GlobalService,
-              private router: Router) { }
+              public globalService: GlobalService
+              ) { }
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.params;

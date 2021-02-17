@@ -62,7 +62,12 @@ export class AgendamentoService {
   listAgenamento(cpfCnpj){
     return this.http.get<Agendamento[]>(`${this.API}/agendamento/mobile/consulta/${cpfCnpj}`).pipe(
       take(1),
-      tap(console.log)
+    );
+  }
+
+  listAgendamentoCpfCnpjAtivado(cpfCnpj){
+    return this.http.get<Agendamento[]>(`${this.API}/agendamento/ativado/${cpfCnpj}`).pipe(
+      take(1),
     );
   }
 

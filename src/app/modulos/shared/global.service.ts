@@ -72,4 +72,8 @@ formatarCpf(cpf){
     this.toastr.error(mensagem, titulo);
   }
 
+  alertShow(mensagem: string, titulo: string){
+    this.toastr.info(mensagem, titulo);
+  }
+
 }
