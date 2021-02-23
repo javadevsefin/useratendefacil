@@ -1,3 +1,4 @@
+import { AvaliacaoService } from './../../avaliacao/shared/avaliacao.service';
 import { GlobalService } from './../../shared/global.service';
 import { Agendamento } from './../shared/agendamento';
 import { Calendario } from './../shared/calendario';
@@ -25,18 +26,20 @@ export class AgendamentoListComponent implements OnInit {
   unidades: Unidade[];
   calendarios: Calendario[];
   agendamentos: Agendamento[];
+  cont: number = 0;
 
   constructor(private route: ActivatedRoute,
               private cadastroService: CadastroUsuarioService,
               private fb: FormBuilder,
               private agendamentoService: AgendamentoService,
               private router: Router,
-              public globalService: GlobalService) { }
+              public globalService: GlobalService,
+              private avaliacaoService: AvaliacaoService ) { }
 
   ngOnInit(): void {
 
     this.comboBox();
-
+    this.contador();
     const routeParans = this.route.snapshot.params;
 
       if(routeParans.id != null){
@@ -89,6 +92,12 @@ export class AgendamentoListComponent implements OnInit {
 
   avaliar(){
     this.router.navigate(['avaliacao/consultar', this.cpfCnpj]);
+  }
+
+  contador(){
+    this.avaliacaoService.findByContagem().subscribe(( res: any)=>
+        this.cont = res
+    );
   }
 
 }

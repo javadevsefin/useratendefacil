@@ -103,7 +103,7 @@ export class AvaliacaoConsultaComponent implements OnInit {
   }
 
   avaliar(){
-
+    this.btnAvaliar = !this.btnAvaliar;
     let nota = this.avaliacaoForm.get('nota').value;
     this.avaliacaoService.avaliar(this.id, this.identificador, nota).subscribe(
       success => { this.globalService.saveShow("Realizada com Sucesso!", "Avaliação"); }

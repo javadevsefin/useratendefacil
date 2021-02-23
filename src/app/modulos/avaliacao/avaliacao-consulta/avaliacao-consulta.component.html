@@ -54,7 +54,8 @@
           <form class="needs-validation" novalidate [formGroup]="avaliacaoForm" *ngIf="!msgNull">
                 <div class="apr">
                     <p style="color: blue; font-weight: bold;">AGENDAMENTO</p>
-                    <p>SENHA: <span style="color: red;">{{ senha}}</span></p>
+                    <p>IDENTIFICADOR: <span style="color: blue;">{{ identificador }}</span></p>
+                    <p>SENHA: <span style="color: red;">{{ senha }}</span></p>
                     <p>DIA/HORÁRIO: {{ data | date: "dd/MM/yyyy" }}  -  {{ horario }}</p>
                     <p>SERVIÇO: {{ servico }}</p>
                     <p>DETALHAMENTO SERVIÇO: {{ detalhamentoServico }}</p>

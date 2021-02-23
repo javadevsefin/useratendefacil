@@ -24,6 +24,12 @@ export class AvaliacaoService {
     );
   }
 
+  findByContagem(){
+    return this.http.get(`${this.API}/contarAvaliacao`).pipe(
+      take(1)
+    );
+  }
+
   avaliar(idFila, idAgenda, nota){
 
     const httpParams = new HttpParams()

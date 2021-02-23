@@ -1,3 +1,5 @@
+import { HomeModule } from './modulos/home/home.module';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -14,6 +16,7 @@ import { ToastrModule }  from 'ngx-toastr';
     AppComponent
   ],
   imports: [
+    HomeModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

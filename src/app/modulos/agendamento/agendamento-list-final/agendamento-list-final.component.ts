@@ -72,7 +72,8 @@ export class AgendamentoListFinalComponent implements OnInit {
       id: ["", []],
       contribuinte: ["", []],
       detalhamentoServico: ["", [Validators.required]],
-      prioridade: ["", [Validators.required]]
+      prioridade: ["", [Validators.required]],
+      aceite: ["", [Validators.required]]
   });
   }
 

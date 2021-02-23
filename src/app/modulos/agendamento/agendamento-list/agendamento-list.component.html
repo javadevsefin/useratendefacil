@@ -11,7 +11,7 @@
           <i class="fas fa-search"></i>&nbsp;Consultar
         </button>
         <button type="button" (click)="avaliar()" class="btn btn-success">
-          <i class="far fa-thumbs-up"></i>&nbsp;Avaliar
+          <i class="far fa-thumbs-up"></i>&nbsp;Avaliar&nbsp;<span class="badge badge-light">{{ cont }}</span>
         </button>
         <button type="button" routerLink="/" class="btn btn-warning float-right">
           <i class="fas fa-backward"></i>&nbsp;Voltar
@@ -86,10 +86,28 @@
             </a>
         </div>
         <div class="modal-body">
-          <div class="alert alert-success" role="alert">
-            <div style="color: blue; font-weight: bold; margin-left: 5px;">Óla,&#160;<span style="color: red;">{{nome}},&#160;</span>
-              aqui estão as vagas conforme a data e unidade escolhida!
+          <div class="alert alert-success col-md-12" role="alert">
+            <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseInfo" aria-expanded="false" aria-controls="collapseExample">
+              INFORMAÇÕES IMPORTANTES!
+            </button>
+            <div class="collapse mt-2" id="collapseInfo">
+              <div class="card card-body" style="box-shadow: 5px 5px 10px #000;">
+                <div style="color: black; margin-left: 5px;">
+                  <span style="font-weight: bold;">Óla &#160;<span style="color: blue;">{{nome}},</span>&#160;tudo bem?</span>
+                  <br/><br/>
+                  <span style="font-weight: bolder;">
+                    <p><u>Temos algumas informações para voçê!</u></p>
+                    <p>Percorra toda lista e veja o horário, a unidade e o serviço que atenda sua necessidade.</p>
+                    <p>Serviço GRL e um tipo de serviço generico ou geral, contem todos os serviços do atende fácil em um único lugar.</p>
+                    <p>Caso seja um serviço específico procure por toda lista que irá encontrar.</p>
+                    <p>Em caso de dúvida consulta as unidades de atendimento Atende Fácil.</p>
+                    <p>A equipe Atende Fácil agradeçe!</p>
+                  </span>
+                </div>
+              </div>
             </div>
+
+
           </div>
             <div id="tbsd" class="table-responsive" *ngIf="agendamentos">
                 <table class="table table-hover">

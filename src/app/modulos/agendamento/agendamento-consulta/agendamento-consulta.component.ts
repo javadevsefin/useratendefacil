@@ -23,6 +23,7 @@ export class AgendamentoConsultaComponent implements OnInit {
   unidade: string;
   end: string;
   statusAgendamento: string;
+  identificador: string;
 
   constructor(private route: ActivatedRoute,
               private agendamentoService: AgendamentoService,
@@ -37,6 +38,7 @@ export class AgendamentoConsultaComponent implements OnInit {
   detalhar(id){
     this.agendamentoService.loadById(id).subscribe(
       (dados: any) =>{
+        this.identificador = dados.id;
         this.senha = dados.senha;
         this.horario = dados.horario;
         this.dia = this.globalService.formatarDate(dados.grade.calendario.dia);

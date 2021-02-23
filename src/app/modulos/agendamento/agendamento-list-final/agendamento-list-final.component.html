@@ -89,8 +89,8 @@
                     <option value="Obeso">Obeso</option>
                 </select>
             </div>
-            <div class="form-group col-md-6 mt-4 alert alert-danger" role="alert" style="box-shadow: 5px 5px 10px #000;">
-                <div class="ml-2">
+            <div class="form-group col-md-6 alert alert-danger" role="alert" style="box-shadow: 5px 5px 10px #000;">
+                <div class="ml-3">
                 <label for="prioridade" style="color: red;"><strong>Atendimento prioritário</strong></label><br/>
                 <span style="font-size: 12px; font-weight: bold; color: black;">Em conformidade com a Lei nº 10.048/00 é direito a atendimento prioritário,
                         pessoas com necessidades especiais, idosos com idade igual ou superior a 60 (sessenta) anos, gestantes,
@@ -98,6 +98,10 @@
                         serviços públicos e instituições financeiras. </span>
                         <br/>
                     <span style="font-weight: bold; color: red; margin-top: 20px;">OBS.: A escolha da prioridade e de sua inteira responsabilidade, caso não comprovado a mesma, será considerado prioridade normal automaticamente.</span>
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input" id="exampleCheck1" formControlName="aceite">
+                      <label class="form-check-label" for="exampleCheck1">Concordo com a Lei nº 10.048/00.</label>
+                    </div>
                 </div>
             </div>
 				</div>
@@ -149,9 +153,10 @@
                 <div class="d-flex justify-content-center" style="color: red; font-weight: bold;">Dica! Imprima seu recibo apos enviar !</div>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-            <button type="button" *ngIf="btn" class="btn btn-success" (click)="enviar()">Enviar</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-window-close"></i>&nbsp;Fechar</button>
+            <button type="button" *ngIf="btn" class="btn btn-success" (click)="enviar()"><i class="fas fa-paper-plane"></i>&#160;Enviar</button>
             </div>
-        </div>
-        </div>
-    </div>
+      </div>
+  </div>
+</div>
+
