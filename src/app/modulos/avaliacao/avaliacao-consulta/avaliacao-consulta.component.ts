@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Agendamento } from '../../agendamento/shared/agendamento';
 import { AvaliacaoService } from '../shared/avaliacao.service';
+import { Avaliacao } from '../shared/avaliacao';
 
 @Component({
   selector: 'app-avaliacao-consulta',
@@ -15,6 +16,7 @@ export class AvaliacaoConsultaComponent implements OnInit {
 
   avaliacaoForm: FormGroup;
   agendamentos: Agendamento[];
+  avaliacoes: Avaliacao[];
   senha: string;
   horario: string;
   dia: string;
@@ -96,8 +98,8 @@ export class AvaliacaoConsultaComponent implements OnInit {
 
   findByCpfCnpj(cpfCnpj){
     if(cpfCnpj != null){
-      this.agendamentoService.listAgendamentoCpfCnpjAtivado(cpfCnpj).subscribe(
-        dados  =>  this.agendamentos = dados
+      this.avaliacaoService.listAgendamentoCpfCnpjAtivado(cpfCnpj).subscribe(
+        dados  =>  this.avaliacoes = dados
       );
     }
   }

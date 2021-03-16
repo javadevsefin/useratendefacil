@@ -2,6 +2,7 @@ import { delay, take, tap } from 'rxjs/operators';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { Avaliacao } from './avaliacao';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,13 @@ export class AvaliacaoService {
 
   findByIdentificador(identificador){
     return this.http.get(`${this.API}/verifica/${identificador}`).pipe(
+      take(1)
+    );
+  }
+
+
+  listAgendamentoCpfCnpjAtivado(cpfCnpj){
+    return this.http.get<Avaliacao[]>(`${this.API}/consultar/avaliar/${cpfCnpj}`).pipe(
       take(1)
     );
   }

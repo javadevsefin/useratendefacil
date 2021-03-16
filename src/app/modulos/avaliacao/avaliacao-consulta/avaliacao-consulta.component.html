@@ -12,7 +12,7 @@
       </h1>
     </div>
   </div>
-  <div id="tbsd" class="table-responsive mb-2" *ngIf="agendamentos">
+  <div id="tbsd" class="table-responsive mb-2" *ngIf="avaliacoes">
     <table class="table table-hover">
       <thead>
         <tr class="bg-success text-light">
@@ -23,12 +23,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let agendamento of agendamentos">
-          <td>{{ agendamento.grade.calendario.dia | date: "dd/MM/yy"}}</td>
-          <td>{{ agendamento.horario }}</td>
-          <td>{{ agendamento.senha }}</td>
+        <tr *ngFor="let avaliacao of avaliacoes">
+          <td>{{ avaliacao.data | date: "dd/MM/yy"}}</td>
+          <td>{{ avaliacao.horario }}</td>
+          <td>{{ avaliacao.senha }}</td>
           <td>
-            <button type="button" class="btn btn-outline-info btn-sm" (click)="detalharAvaliacao(agendamento.id)" data-toggle="modal" data-target=".bd-example-modal-lg">
+            <button type="button" class="btn btn-outline-info btn-sm" (click)="detalharAvaliacao(avaliacao.id)" data-toggle="modal" data-target=".bd-example-modal-lg">
               <i class="fas fa-thumbs-up"></i>&nbsp;Avaliar
             </button>
           </td>

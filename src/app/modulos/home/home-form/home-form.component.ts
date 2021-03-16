@@ -1,6 +1,7 @@
 import { HomeService } from './../shared/home.service';
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-home-form',
   templateUrl: './home-form.component.html',
@@ -8,23 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeFormComponent implements OnInit {
 
-  mess: []
+  mess:[]
   titulo: string;
   mensagem: string;
-  constructor(private homeService: HomeService) { }
+
+  constructor(private homeService: HomeService ) { }
 
   ngOnInit(): void {
-
-    this.findByMess()
+    this.findByMess();
   }
 
   findByMess(){
-      this.homeService.findByMess().subscribe((dados: any)=>{
-          dados.forEach(mess => {
-              this.titulo = mess.titulo
-              this.mensagem = mess.mensagem
-          });
-      });
+    this.homeService.findByMess().subscribe((dados:any)=>{
+         dados.forEach(mess => {
+           this.titulo = mess.titulo;
+           this.mensagem = mess.mensagem;
+         });
+    });
   }
-
 }
