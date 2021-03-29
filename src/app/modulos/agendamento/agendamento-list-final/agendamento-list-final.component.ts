@@ -8,8 +8,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 
-
-
 @Component({
   selector: 'app-agendamento-list-final',
   templateUrl: './agendamento-list-final.component.html',
@@ -71,8 +69,8 @@ export class AgendamentoListFinalComponent implements OnInit {
     this.agendForm = this.fb.group({
       id: ["", []],
       contribuinte: ["", []],
-      detalhamentoServico: ["", [Validators.required]],
-      prioridade: ["", [Validators.required]],
+      detalhamentoServico: ["", []],
+      prioridade: ["", []],
       aceite: ["", [Validators.required]]
   });
   }

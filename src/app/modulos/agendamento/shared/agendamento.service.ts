@@ -40,8 +40,8 @@ export class AgendamentoService {
       );
   }
 
-  listDetalhamentoServico(id){
-    return this.http.get<DetalhamentoServico[]>(`${this.API}/detalhamentoservico/select/${id}`).pipe(
+  listDetalhamentoServico(servico){
+    return this.http.get<DetalhamentoServico[]>(`${this.API}/detalhamentoservico/select/${servico}`).pipe(
       take(1)
     );
   }

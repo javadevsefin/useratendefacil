@@ -67,43 +67,19 @@
             </div>
           </div>
           <div class="form-row col-md-12 mt-3">
-			<label style="color: green; font-weight: bold; font-size: 12pt;">ESCOLHA O DIA SERVIÇO E PRIORIDADE DO ATENDIMENTO</label><br/>
+			<label style="color: green; font-weight: bold; font-size: 12pt;">CONFIRMAÇÃO DOS DADOS</label><br/>
 				<div class="form-row col-md-12">
-            <div class="form-group col-md-3" >
-                <label for="calendario">Serviço:</label>
-                <select  class="form-control" id="calendario" formControlName="detalhamentoServico">
-                    <option value="" selected>Escolha o serviço</option>
-                  <option *ngFor="let detalhamentoServico of detalhamentoServicos" [value]="detalhamentoServico.id">{{detalhamentoServico.descricao}}</option>
-                </select>
-            </div>
-            <div class="form-group col-md-3">
-                <label for="unidade">Prioridade:</label>
-                <select  class="form-control" id="unidade" formControlName="prioridade">
-                    <option value="" selected>Escolha a priodidade</option>
-                    <option value="Normal">Normal</option>
-                    <option value="Idoso">Idoso</option>
-                    <option value="Gestante">Gestante</option>
-                    <option value="Lactante">Lactante</option>
-                    <option value="Nessecidades especiais">Nessecidades especiais</option>
-                    <option value="Criança de colo">Criança de colo</option>
-                    <option value="Obeso">Obeso</option>
-                </select>
-            </div>
-            <div class="form-group col-md-6 alert alert-danger" role="alert" style="box-shadow: 5px 5px 10px #000;">
-                <div class="ml-3">
-                <label for="prioridade" style="color: red;"><strong>Atendimento prioritário</strong></label><br/>
-                <span style="font-size: 12px; font-weight: bold; color: black;">Em conformidade com a Lei nº 10.048/00 é direito a atendimento prioritário,
-                        pessoas com necessidades especiais, idosos com idade igual ou superior a 60 (sessenta) anos, gestantes,
-                        lactantes, pessoas com crianças de colo e obesos em repartições públicas, empresas concessionárias de
-                        serviços públicos e instituições financeiras. </span>
-                        <br/>
-                    <span style="font-weight: bold; color: red; margin-top: 20px;">OBS.: A escolha da prioridade e de sua inteira responsabilidade, caso não comprovado a mesma, será considerado prioridade normal automaticamente.</span>
-                    <div class="form-check">
-                      <input type="checkbox" class="form-check-input" id="exampleCheck1" formControlName="aceite">
-                      <label class="form-check-label" for="exampleCheck1">Concordo com a Lei nº 10.048/00.</label>
-                    </div>
-                </div>
-            </div>
+          <div class="ml-3">
+            <span class="mt-2" style="color: black;">
+                Verifique se todos os dados acima estão corretos!
+            </span>
+                  <br/>
+              <div class="form-check mt-2">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1" formControlName="aceite">
+                <label class="form-check-label" for="exampleCheck1" style="color: black;">De acordo</label>
+              </div>
+              <br/>
+          </div>
 				</div>
 			</div>
          <div class="col-md-12">
