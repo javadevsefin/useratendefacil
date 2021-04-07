@@ -54,7 +54,7 @@ export class AgendamentoListComponent implements OnInit {
 
       this.agendForm = this.fb.group({
           calendario: ["", [Validators.required]],
-          unidade: ["", []]
+          unidade: ["", [Validators.required]]
       });
   }
 
